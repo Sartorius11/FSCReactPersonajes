@@ -6,11 +6,10 @@ import Global from '../Global';
 // En esta clase vamos a colocar dos select para cambiar los personajes dentro de las series
 class ModificarPersonaje extends Component {
 
-
-        state = {
-            mpersonaje: {},
-            statusGet: false
-        }
+    state = {
+        mpersonaje: {},
+        statusGet: false
+    }
 
     //  para modificar los personajes 
     loadModificarPersonaje = () => {
@@ -28,13 +27,11 @@ class ModificarPersonaje extends Component {
         this.loadModificarSerie();
     }
 
-
     //para modificar las series
     stateSerie = {
         mserie: [],
         statusGet: false
     }
-
 
     loadModificarSerie = () => {
         var url = Global.urlSeries + '/api/Series/' + this.props.idSerie;
@@ -45,8 +42,6 @@ class ModificarPersonaje extends Component {
             });
         });
     }
-    
-
 
     //actualizamos las propiedades tanto de Personaje como de serie
     componentDidUpdate = (oldProps) => {
@@ -60,52 +55,40 @@ class ModificarPersonaje extends Component {
 
     }
 
-
-
     render() {
         return (
-
-
             <div>
                 <h1 className='py-2 bg-info text-white'>Modificar Personaje y Serie</h1>
-
                 <form onSubmit={this.loadModificarPersonaje} className='w-75' style={{ margin: "10px auto" }}>
-                    
-
-                <label>Personaje:</label>
+                    <label>Personaje:</label>
                     <select id="serie" name="serielist" form="serieform">
                         {/* aqui irian los Personajes modificados */}
-
                         {
-                           this.state.mpersonaje.map(elemento => {
-
-                            <option key={elemento.idPersonaje}value={elemento.idPersonaje}>{elemento.nombre},{elemento.imagen}</option>
-                           } 
-                        )}
-                  
+                            this.state.mpersonaje.map(elemento => {
+                                <option
+                                    key={elemento.idPersonaje}
+                                    value={elemento.idPersonaje}
+                                >
+                                    {elemento.nombre},{elemento.imagen}
+                                </option>
+                            })
+                        }
                     </select>
-
-
                     <label>Serie:</label>
                     <select id="serie" name="serielist" form="serieform">
-                    {
-                           this.stateSerie.map(elemento => {
+                        {
+                            this.stateSerie.map(elemento => {
 
-                            <option key={elemento.idSerie}value={elemento.idSerie}>{elemento.nombre},{elemento.imagen}</option>
-                           
-                           } 
-                        )}
+                                <option key={elemento.idSerie} value={elemento.idSerie}>{elemento.nombre},{elemento.imagen}</option>
+
+                            })
+                        }
                     </select>
-                  
-
-                       
-                    <button  className='btn btn-primary my-2'>
-                       Guardar Cambios
+                    <button className='btn btn-primary my-2'>
+                        Guardar Cambios
                     </button>
-
                 </form>
             </div>
-
         )
     }
 }

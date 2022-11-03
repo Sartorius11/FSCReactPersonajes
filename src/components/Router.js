@@ -13,59 +13,47 @@ import Series from './Series';
 import ModificarPersonaje from './ModificarPersonaje';
 
 class Router extends Component {
-    render() {
 
-        function SerieElement () {
+    render() {
+        function SerieElement() {
             var { idSerie } = useParams();
             return (
-                <Series idSerie={idSerie}/>
+                <Series idSerie={idSerie} />
             )
         }
 
-       
-
-        function ModificarPersonajeElement () {
-            var { idPersonaje , idSerie} = useParams();
+        function ModificarPersonajeElement() {
+            var { idPersonaje, idSerie } = useParams();
             return (
                 <><ModificarPersonaje idPersonaje={idPersonaje} /><Series idSerie={idSerie} /></>
             )
         }
 
-
-
-
-
-        function PersonajesElement () {
+        function PersonajesElement() {
             var { idPersonaje } = useParams();
             return (
-                <Personajes idPersonaje={idPersonaje}/>
+                <Personajes idPersonaje={idPersonaje} />
             )
         }
-    
 
-
-  
-
-      
+        function PersonajesElementSerie() {
+            var { idSerie } = useParams();
+            return (
+                <Personajes idSerie={idSerie} />
+            )
+        }
 
         return (
             <BrowserRouter>
-            <Menu/>
+                <Menu />
                 <Routes>
-                    
                     {/* <Route path='/' element={<Menu/>}/> */}
-                    <Route path='/' element={<Home/>}/>
-                    <Route path='/NuevoPersonaje' element={<NuevoPersonaje/>}/>
-                    <Route path='ModificarPersonaje/:idPersonaje/:idSerie' element={<ModificarPersonajeElement/>}/> 
-                    <Route path='Personajes/' element={<PersonajesElement/>}/> 
-                    <Route path='/series/:idSerie' element={<SerieElement/>}/>
-
-                   
-
-
-
-                  
-
+                    <Route path='/' element={<Home />} />
+                    <Route path='/NuevoPersonaje' element={<NuevoPersonaje />} />
+                    <Route path='/ModificarPersonaje/:idPersonaje/:idSerie' element={<ModificarPersonajeElement />} />
+                    <Route path='/Personajes' element={<PersonajesElement />} />
+                    <Route path='/Personajes/:idSerie' element={<PersonajesElementSerie />} />
+                    <Route path='/series/:idSerie' element={<SerieElement />} />
                 </Routes>
             </BrowserRouter>
         )
